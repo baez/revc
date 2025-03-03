@@ -1,4 +1,6 @@
 #include "../headers/common.h"
+#include "../headers/localshared.h"
+
 #define BUFFER_SIZE 1000
 
 void teststoutfeatures();
@@ -16,14 +18,19 @@ int main(int argc, char *argv[]) {
     int i = 2 * 3;
     printf("The value of i is: %d\n", i);
 
-
     char *name = argv[1];
     printf("Path & Program: %s.\n", argv[0]);
     printf("Hello, %s!\n", name);
 
-    teststdinfeatures();
+    int result = testcallocinteger(10);
+    if (result == EXIT_FAILURE) {
+        fprintf(stderr, "Memory allocation failed unexpectedly.\n");
+        return EXIT_FAILURE;
+    }
 
-    return 0;
+    printf("Memory allocation was successful.\n");
+
+    return EXIT_SUCCESS;
 }
 
 void teststoutfeatures()
