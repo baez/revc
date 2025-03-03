@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
     printf("Path & Program: %s.\n", argv[0]);
     printf("Hello, %s!\n", name);
 
-    teststoutfeatures();
+    teststdinfeatures();
 
     return 0;
 }
@@ -98,14 +98,13 @@ void teststoutfeatures()
 
 void teststdinfeatures()
 {
-    char name[50];
+    char name[30];
     char buffer[BUFFER_SIZE];
     int age;
     char c;
 
-    // You can use scanf for formatted input
-    printf("Enter your name: ");
-    scanf("%49s", name);  // Limit to 49 chars to avoid buffer overflow
+    printf("Please enter your name: ");
+    scanf("%29s", name);        // Limit to 29 chars to avoid buffer overflow
     printf("Enter your age: ");
     scanf("%d", &age);
     printf("You entered: %s, age %d\n", name, age);
@@ -137,9 +136,8 @@ void teststdinfeatures()
         if (strcmp(buffer, "exit\n") == 0) { // Check for the user typing 'exit' followed by pressing 'Enter'
             break;
         }
-        printf("You typed: %s", buffer);  // Note: fgets, like scanf includes a newline!
+        printf("You typed: %s", buffer);  // includes a newline
     }
-
 }
 
 void teststdinfeatures2()
@@ -157,6 +155,7 @@ void teststdinfeatures2()
     printf("Enter a character: ");
     c = getchar();
     printf("You entered: %c\n", c);
+    
     // Note that getchar() will read the newline character as well, so you may need to consume it
     // using getchar() again if you want to read the next character
     // You can also use the fgets function to read a string from stdin
@@ -167,12 +166,14 @@ void teststdinfeatures2()
     // You can remove the newline character if you want
     str[strcspn(str, "\n")] = '\0';  // Remove the newline character
     printf("You entered: %s\n", str);
+    
     // You can also use the fscanf function to read formatted input from stdin
     FILE *inputFile = fopen("input.txt", "r");
     if (inputFile == NULL) {
         perror("Error opening file");
         return;
     }
+
     int fileNumber;
     fscanf(inputFile, "%d", &fileNumber);
     printf("Number read from file: %d\n", fileNumber);
