@@ -14,9 +14,6 @@ This repository contains example code and exercises in C. It’s designed to hel
 - **headers/**  
   Contains header files used in the source code.
 
-- **.vscode/**  
-  Contains Visual Studio Code configuration files for development and debugging.
-
 ## How to Use
 
 1. **Clone the repository:**
