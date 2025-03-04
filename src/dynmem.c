@@ -5,7 +5,7 @@ int testcallocinteger(int countOfIntegersNeeded)
 {
     int *arr = calloc(countOfIntegersNeeded, sizeof(int));  // Allocates memory for 10 integers and initializes all to 0.
     if (arr == NULL) {
-        perror("Memory allocation failed");
+        perror("Memory allocation failed.");
         return EXIT_FAILURE;
     }
     
