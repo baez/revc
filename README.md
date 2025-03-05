@@ -1,6 +1,6 @@
 # revc
 
-A compact repository to review the C programming language.
+A compact repository to review the C programming language on Linux using VSCode and gcc compiler.
 
 ## Overview
 
