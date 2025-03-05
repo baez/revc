@@ -11,10 +11,6 @@ void teststdinfeatures2();
 void teststdinfeatures2();
 
 int testcallocinteger(int cout);
-void printTreePortraitLeftSideUp(struct charNode *node, int level);
-void printTreePortraitRightSideUp(struct charNode *node, int level);
-void printTreeLandscape(struct charNode *node, int level);
-void buildAndPrintSampleTree(void (*printTree)(struct charNode *node, int level));
 
 int main(int argc, char *argv[]) 
 {
@@ -38,24 +34,19 @@ int testPrintBTree(const char *orientation)
     printf("--- build and print tree --- \n");
     void (*pTree)(struct charNode *node, int level);
 
-    if (strcmp("L", orientation))
-    {
-        printf("Thanks, L => tree will be printed with landscape orientation.\n");
-        pTree = &printTreeLandscape;       
-    }
-    else if (strcmp("PL", orientation))
+    if (strcmp("PL", orientation) == 0)
     {
         printf("Thanks, PL => tree will be printed with portrait left side up orientation.\n");
         pTree = &printTreePortraitLeftSideUp;
     }
-    else if (strcmp("PR", orientation))
+    else if (strcmp("PR", orientation) == 0)
     {
         printf("Thanks, PR => tree will be printed with portrait right side up orientation.\n");
         pTree = &printTreePortraitRightSideUp;
     }
     else
     {
-        printf("Invalid tree orientation. Please use 'PR', 'PL' or 'L'.\n");
+        printf("Invalid tree orientation. Please use 'PR' or 'PL'.\n");
         return EXIT_FAILURE;
     }
 
