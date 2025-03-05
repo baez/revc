@@ -6,7 +6,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/src/hello-world",
-            "args": ["george"],
+            "args": ["george", "L"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

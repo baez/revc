@@ -9,7 +9,7 @@
                 "-g",
                 "${cwd}/src/*.c",
                 "-o",
-                "${workspaceFolder}/src/hello-world"    // "${fileDirname}/hello-world"
+                "${workspaceFolder}/src/hello.out"    // "${fileDirname}/hello-world"
             ],
             "options": {
                 "cwd": "${fileDirname}"

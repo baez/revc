@@ -1,34 +1,78 @@
 #include "../headers/common.h"
-#include "../headers/localshared.h"
+#include "../headers/localShared.h"
 
 #define BUFFER_SIZE 1000
 
 void teststoutfeatures();
+int testMemAlloc();
+int testPrintBTree(const char *orientation);
 void teststdinfeatures();
 void teststdinfeatures2();
 void teststdinfeatures2();
 
-int main(int argc, char *argv[]) {
-    
-    if (argc < 2) {
-        fprintf(stderr, "Usage: %s <name>\n", argv[0]);
+int testcallocinteger(int cout);
+void printTreePortraitLeftSideUp(struct charNode *node, int level);
+void printTreePortraitRightSideUp(struct charNode *node, int level);
+void printTreeLandscape(struct charNode *node, int level);
+void buildAndPrintSampleTree(void (*printTree)(struct charNode *node, int level));
+
+int main(int argc, char *argv[]) 
+{
+    if (argc < 3) {
+        fprintf(stderr, "Usage: %s <your_name> <bTree_orientation>\nOrientation: { PR: Portrait right side up, PL: Portrait left side up, L: Landscap }\n", argv[0]);
         return 1;
     }
 
-    int i = 2 * 3;
-    printf("The value of i is: %d\n", i);
+    printf("Path & Program: %s.\n", argv[0]);
 
     char *name = argv[1];
-    printf("Path & Program: %s.\n", argv[0]);
     printf("Hello, %s!\n", name);
 
-    int result = testcallocinteger(10);
-    if (result == EXIT_FAILURE) {
-        fprintf(stderr, "Memory allocation failed unexpectedly.\n");
+    if (testPrintBTree(argv[2]) == EXIT_FAILURE) return EXIT_FAILURE;
+
+    return EXIT_SUCCESS;
+}
+
+int testPrintBTree(const char *orientation)
+{
+    printf("--- build and print tree --- \n");
+    void (*pTree)(struct charNode *node, int level);
+
+    if (strcmp("L", orientation))
+    {
+        printf("Thanks, L => tree will be printed with landscape orientation.\n");
+        pTree = &printTreeLandscape;       
+    }
+    else if (strcmp("PL", orientation))
+    {
+        printf("Thanks, PL => tree will be printed with portrait left side up orientation.\n");
+        pTree = &printTreePortraitLeftSideUp;
+    }
+    else if (strcmp("PR", orientation))
+    {
+        printf("Thanks, PR => tree will be printed with portrait right side up orientation.\n");
+        pTree = &printTreePortraitRightSideUp;
+    }
+    else
+    {
+        printf("Invalid tree orientation. Please use 'PR', 'PL' or 'L'.\n");
         return EXIT_FAILURE;
     }
 
-    printf("Memory allocation was successful.\n");
+    buildAndPrintSampleTree(pTree);
+
+    return EXIT_SUCCESS;
+}
+
+// if (testMemAlloc() == EXIT_FAILURE) return EXIT_FAILURE;
+int testMemAlloc()
+{
+    int result = testcallocinteger(10);
+    if (result == EXIT_FAILURE)
+    {
+        fprintf(stderr, "Memory allocation failed unexpectedly.\n");
+        return EXIT_FAILURE;
+    }
 
     return EXIT_SUCCESS;
 }
